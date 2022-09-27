@@ -200,9 +200,6 @@ bar {
         status_command i3status
 }
 
-# Keyboard Layouts = add arabic layout
-exec "setxkbmap -layout 'us,ara' -option 'grp:alt_shift_toggle'"
-
 # take screenShot
 bindsym Print exec --no-startup-id maim --format=png "/home/$USER/Pictures/i3-screens/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-all.png"
 bindsym Shift+Print exec --no-startup-id maim --format=png --select "/home/$USER/Pictures/i3-screens/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-selected.png"
@@ -210,3 +207,6 @@ bindsym Shift+Print exec --no-startup-id maim --format=png --select "/home/$USER
 # Add Wallpaper
 exec_always feh --bg-scale /home/ahmed/Pictures/Background/joker11-18.jpg
 
+# Keyboard Layouts = add arabic layout
+exec_always "setxkbmap -model pc105 -layout us,ara -option 'grp:win_space_toggle'"
+exec_always "xmodmap /home/ahmed/.Xmodmap"
