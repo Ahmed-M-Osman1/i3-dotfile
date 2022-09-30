@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:DejaVuSans, FontAwesome 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -158,8 +158,10 @@ assign [class="Org.gnome.Nautilus"] $ws4
 assign [class="discord"] $ws5
 
 # exec programs at startup
-exec google-chrome
+exec google-chrome --password-store=gnome
 exec nautilus
+exec Slack --password-store=gnome
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -206,6 +208,9 @@ bindsym Shift+Print exec --no-startup-id maim --format=png --select "/home/$USER
 
 # Add Wallpaper
 exec_always feh --bg-scale /home/ahmed/Pictures/Background/joker11-18.jpg
+
+# password saving 
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
 
 # Keyboard Layouts = add arabic layout
 exec_always "setxkbmap -model pc105 -layout us,ara -option 'grp:win_space_toggle'"
