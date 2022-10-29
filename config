@@ -193,6 +193,8 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
+gaps inner 10
+gaps outer 10
 
 bindsym $mod+r mode "resize"
 
@@ -203,8 +205,8 @@ bar {
 }
 
 # take screenShot
-bindsym Print exec --no-startup-id maim --format=png "/home/$USER/Pictures/i3-screens/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-all.png"
-bindsym Shift+Print exec --no-startup-id maim --format=png --select "/home/$USER/Pictures/i3-screens/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-selected.png"
+bindsym Print exec --no-startup-id maim --format=png "/home/$USER/Pictures/i3-screens/FullScreenShot-$(date -u +'%Y%m%d-%H%M%SZ')-all.png"
+bindsym Shift+Print exec --no-startup-id maim --format=png --select "/home/$USER/Pictures/i3-screens/SelectedScreenShot-$(date -u +'%Y%m%d-%H%M%SZ').png"
 
 # Add Wallpaper
 exec_always feh --bg-scale /home/ahmed/Pictures/Background/joker11-18.jpg
@@ -213,5 +215,16 @@ exec_always feh --bg-scale /home/ahmed/Pictures/Background/joker11-18.jpg
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
 
 # Keyboard Layouts = add arabic layout
+
 exec_always "setxkbmap -model pc105 -layout us,ara -option 'grp:win_space_toggle'"
-exec_always "xmodmap /home/ahmed/.Xmodmap"
+
+# exec "setxkbmap -option 'grp:win_space_toggle'"
+
+exec_always bash -c "input-remapper-control --command stop-all && input-remapper-control --command autoload && setxkbmap -option 'grp:win_space_toggle'"
+
+# exec_always --no-startup-id "xmodmap /home/ahmed/.Xmodmap"
+
+default_border pixel 1
+default_floating_border pixel 1
+
+exec_always "picom -b"
